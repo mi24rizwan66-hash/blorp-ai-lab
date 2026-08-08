@@ -147,3 +147,61 @@ footer {
         display: none;
     }
 }
+
+.boot {
+    position: fixed;
+    inset: 0;
+    background: #050505;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+}
+
+.boot-box {
+    width: min(700px, 90%);
+}
+
+.boot-logo {
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 8px;
+    margin-bottom: 40px;
+}
+
+.boot-status {
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.progress {
+    width: 100%;
+    height: 4px;
+    background: #222;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #00ff88;
+    animation: bootProgress 2.5s forwards;
+}
+
+.boot-log {
+    margin-top: 25px;
+    color: #777;
+    font-size: 12px;
+    line-height: 2;
+}
+
+@keyframes bootProgress {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
