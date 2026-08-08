@@ -205,3 +205,175 @@ footer {
         width: 100%;
     }
 }
+
+.lab-screen {
+    min-height: 100vh;
+    background: #050505;
+    color: #fff;
+    font-family: monospace;
+    padding: 25px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #222;
+    padding-bottom: 20px;
+}
+
+.core-status {
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.sidebar {
+    border-right: 1px solid #222;
+    padding-right: 20px;
+}
+
+.side-title,
+.panel-title {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.nav-btn {
+    display: block;
+    width: 100%;
+    background: transparent;
+    color: #777;
+    border: 0;
+    text-align: left;
+    padding: 15px 5px;
+    font-family: monospace;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.nav-btn.active {
+    color: #00ff88;
+}
+
+.core {
+    min-height: 500px;
+}
+
+.panel-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.panel-title span {
+    color: #00ff88;
+}
+
+.neural {
+    height: 300px;
+    position: relative;
+    border: 1px solid #151515;
+    background: radial-gradient(circle, #111 0%, #050505 70%);
+}
+
+.node {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #00ff88;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #00ff88;
+    animation: pulse 1.5s infinite;
+}
+
+.n1 { left: 15%; top: 25%; }
+.n2 { left: 35%; top: 45%; }
+.n3 { left: 55%; top: 20%; }
+.n4 { left: 75%; top: 50%; }
+.n5 { left: 25%; top: 75%; }
+.n6 { left: 50%; top: 70%; }
+.n7 { left: 80%; top: 25%; }
+
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.metric {
+    border: 1px solid #222;
+    padding: 15px;
+}
+
+.metric small {
+    color: #666;
+    letter-spacing: 2px;
+}
+
+.metric strong {
+    display: block;
+    margin-top: 10px;
+}
+
+.meter {
+    height: 3px;
+    background: #222;
+    margin-top: 12px;
+}
+
+.meter i {
+    display: block;
+    height: 100%;
+    background: #00ff88;
+}
+
+.lab-screen footer {
+    margin-top: 20px;
+    color: #555;
+    font-size: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@keyframes pulse {
+    50% {
+        transform: scale(1.6);
+        opacity: .5;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        border-right: 0;
+        border-bottom: 1px solid #222;
+        padding-bottom: 10px;
+    }
+
+    .nav-btn {
+        display: inline-block;
+        width: auto;
+        margin-right: 10px;
+    }
+
+    .neural {
+        height: 250px;
+    }
+
+    .metrics {
+        grid-template-columns: 1fr;
+    }
+}
