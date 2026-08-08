@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #050505;
+    color: white;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    background:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+    background-size: 40px 40px;
+}
+
+.lab {
+    position: relative;
+    min-height: 100vh;
+    padding: 30px 50px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 5px;
+}
+
+.logo span {
+    animation: blink 1s infinite;
+}
+
+.status {
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.dot {
+    display: inline-block;
+
+    width: 8px;
+    height: 8px;
+
+    background: #00ff88;
+    border-radius: 50%;
+
+    margin-right: 8px;
+
+    box-shadow: 0 0 15px #00ff88;
+}
+
+.hero {
+    margin: auto 0;
+    max-width: 800px;
+}
+
+.badge {
+    font-size: 11px;
+    letter-spacing: 3px;
+    opacity: 0.5;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-size: clamp(70px, 12vw, 160px);
+    line-height: 0.8;
+    letter-spacing: -8px;
+}
+
+h1 span {
+    opacity: 0.25;
+}
+
+.hero p {
+    margin-top: 35px;
+    color: #888;
+    font-size: 16px;
+}
+
+button {
+    margin-top: 35px;
+
+    padding: 16px 28px;
+
+    background: white;
+    color: black;
+
+    border: none;
+    cursor: pointer;
+
+    font-weight: bold;
+    letter-spacing: 2px;
+
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 40px rgba(255,255,255,0.15);
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 10px;
+    letter-spacing: 2px;
+
+    opacity: 0.35;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .lab {
+        padding: 25px;
+    }
+
+    h1 {
+        letter-spacing: -4px;
+    }
+
+    footer span {
+        display: none;
+    }
+}
