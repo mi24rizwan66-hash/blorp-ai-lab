@@ -220,5 +220,86 @@ enterBtn.addEventListener("click", () => {
         }
 
     });
+// ===============================
+// BLORP AI CHAT CONNECTION
+// ===============================
 
+const core = document.querySelector(".core");
+
+core.insertAdjacentHTML("beforeend", `
+    <div class="chat-box">
+        <div class="chat-output" id="chatOutput">
+            <div>BLORP AI CORE READY.</div>
+            <div>Ask me something...</div>
+        </div>
+
+        <div class="chat-input">
+            <input
+                id="aiInput"
+                type="text"
+                placeholder="Talk to BLORP..."
+            />
+            <button id="sendBtn">SEND</button>
+        </div>
+    </div>
+`);
+
+const aiInput = document.getElementById("aiInput");
+const sendBtn = document.getElementById("sendBtn");
+const chatOutput = document.getElementById("chatOutput");
+
+async function askBlorp() {
+
+    const prompt = aiInput.value.trim();
+
+    if (!prompt) return;
+
+    chatOutput.innerHTML += `
+        <div><b>YOU:</b> ${prompt}</div>
+        <div id="thinking">BLORP: THINKING...</div>
+    `;
+
+    aiInput.value = "";
+
+    try {
+
+        const response = await fetch("http://localhost:3000/api/generate", {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                prompt: prompt
+            })
+        });
+
+        const data = await response.json();
+
+        document.getElementById("thinking").remove();
+
+        chatOutput.innerHTML += `
+            <div><b>BLORP:</b> ${data.response || data.error}</div>
+        `;
+
+    } catch (error) {
+
+        document.getElementById("thinking").remove();
+
+        chatOutput.innerHTML += `
+            <div><b>ERROR:</b> Cannot connect to BLORP CORE.</div>
+        `;
+
+        console.error(error);
+    }
+}
+
+sendBtn.addEventListener("click", askBlorp);
+
+aiInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        askBlorp();
+    }
+});
 });
