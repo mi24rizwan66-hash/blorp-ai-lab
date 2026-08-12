@@ -1,153 +1,306 @@
-const enterBtn = document.getElementById("enterBtn");
+// =====================================================
+// BLORP AI LAB
+// FRONTEND SCRIPT
+// =====================================================
 
-enterBtn.addEventListener("click", () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-    document.body.innerHTML = `
-        <div class="lab-screen">
+    // -------------------------------------------------
+    // ENTER LAB
+    // -------------------------------------------------
 
-            <header class="topbar">
-                <div class="logo">BLORP<span>_</span></div>
+    const enterBtn = document.getElementById("enterBtn");
 
-                <div class="core-status">
-                    <span class="dot"></span>
-                    NEURAL CORE ONLINE
+    if (enterBtn) {
+
+        enterBtn.addEventListener("click", () => {
+
+            document.body.innerHTML = `
+
+                <div class="lab-screen">
+
+                    <header class="topbar">
+
+                        <div class="logo">
+                            BLORP<span>_</span>
+                        </div>
+
+                        <div class="core-status">
+                            <span class="dot"></span>
+                            NEURAL CORE ONLINE
+                        </div>
+
+                    </header>
+
+
+                    <div class="dashboard">
+
+                        <aside class="sidebar">
+
+                            <div class="side-title">
+                                EXPERIMENTS
+                            </div>
+
+                            <button class="nav-btn active">
+                                ◉ CHAT
+                            </button>
+
+                            <button class="nav-btn">
+                                ◇ CODE
+                            </button>
+
+                            <button class="nav-btn">
+                                ◎ VISION
+                            </button>
+
+                            <button class="nav-btn">
+                                ⌁ SYSTEM
+                            </button>
+
+                        </aside>
+
+
+                        <section class="core">
+
+                            <div class="panel-title">
+
+                                <span>
+                                    NEURAL CORE
+                                </span>
+
+                                <span>
+                                    LIVE
+                                </span>
+
+                            </div>
+
+
+                            <div class="neural">
+
+                                <div class="node n1"></div>
+                                <div class="node n2"></div>
+                                <div class="node n3"></div>
+                                <div class="node n4"></div>
+                                <div class="node n5"></div>
+                                <div class="node n6"></div>
+                                <div class="node n7"></div>
+
+                            </div>
+
+
+                            <div class="metrics">
+
+                                <div class="metric">
+
+                                    <small>
+                                        CORE LOAD
+                                    </small>
+
+                                    <strong>
+                                        82%
+                                    </strong>
+
+                                    <div class="meter">
+                                        <i style="width:82%"></i>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="metric">
+
+                                    <small>
+                                        MEMORY
+                                    </small>
+
+                                    <strong>
+                                        4.2 GB
+                                    </strong>
+
+                                    <div class="meter">
+                                        <i style="width:64%"></i>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="metric">
+
+                                    <small>
+                                        STATUS
+                                    </small>
+
+                                    <strong>
+                                        STABLE
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- CHAT AREA -->
+
+                            <div class="chat-box">
+
+                                <div
+                                    class="chat-output"
+                                    id="chatOutput"
+                                >
+
+                                    <div>
+                                        BLORP AI CORE READY.
+                                    </div>
+
+                                    <div>
+                                        Ask me something...
+                                    </div>
+
+                                </div>
+
+
+                                <div class="chat-input">
+
+                                    <input
+                                        id="aiInput"
+                                        type="text"
+                                        placeholder="Talk to BLORP..."
+                                        autocomplete="off"
+                                    />
+
+                                    <button id="sendBtn">
+                                        SEND
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+
+                    <footer>
+
+                        <span>
+                            BLORP AI LAB v0.2
+                        </span>
+
+                        <span>
+                            EXPERIMENTAL ENVIRONMENT
+                        </span>
+
+                    </footer>
+
                 </div>
-            </header>
 
-            <div class="dashboard">
-
-                <aside class="sidebar">
-
-                    <div class="side-title">EXPERIMENTS</div>
-
-                    <button class="nav-btn active" id="chatTab">
-                        ◉ CHAT
-                    </button>
-
-                    <button class="nav-btn" id="codeTab">
-                        ◇ CODE
-                    </button>
-
-                    <button class="nav-btn" id="visionTab">
-                        ◎ VISION
-                    </button>
-
-                    <button class="nav-btn">
-                        ⌁ SYSTEM
-                    </button>
-
-                </aside>
+            `;
 
 
-                <section class="core">
+            // Start BLORP chat
+            setupChat();
 
-                    <div class="panel-title">
-                        NEURAL CORE
-                        <span>QWEN 2.5 : 3B</span>
-                    </div>
+        });
 
-                    <div id="chatBox" style="
-                        height:350px;
-                        border:1px solid #222;
-                        padding:20px;
-                        overflow-y:auto;
-                        margin-bottom:15px;
-                    ">
+    }
 
-                        <div style="color:#00ff88;">
-                            BLORP › Neural core initialized.
-                        </div>
-
-                        <div style="color:#666; margin-top:8px;">
-                            BLORP › Qwen 2.5 Coder 3B connected.
-                        </div>
-
-                    </div>
+});
 
 
-                    <div style="
-                        display:flex;
-                        gap:10px;
-                    ">
+// =====================================================
+// BLORP CHAT SYSTEM
+// =====================================================
 
-                        <input
-                            id="prompt"
-                            type="text"
-                            placeholder="Talk to BLORP..."
-                            style="
-                                flex:1;
-                                background:#0a0a0a;
-                                border:1px solid #222;
-                                color:white;
-                                padding:15px;
-                                font-family:monospace;
-                                outline:none;
-                            "
-                        >
+function setupChat() {
 
-                        <button
-                            id="sendBtn"
-                            style="
-                                margin:0;
-                            "
-                        >
-                            SEND
-                        </button>
-
-                    </div>
-
-                </section>
-
-            </div>
-
-
-            <footer>
-                BLORP AI LAB v0.2
-                <span>LOCAL AI ENVIRONMENT</span>
-            </footer>
-
-        </div>
-    `;
-
-
-    const prompt = document.getElementById("prompt");
+    const input = document.getElementById("aiInput");
     const sendBtn = document.getElementById("sendBtn");
-    const chatBox = document.getElementById("chatBox");
+    const chatOutput = document.getElementById("chatOutput");
 
+
+    // Safety check
+    if (!input || !sendBtn || !chatOutput) {
+
+        console.error("BLORP: Chat elements not found.");
+
+        return;
+
+    }
+
+
+    // -------------------------------------------------
+    // SEND MESSAGE
+    // -------------------------------------------------
 
     async function sendMessage() {
 
-        const message = prompt.value.trim();
-
-        if (!message) return;
+        const message = input.value.trim();
 
 
-        chatBox.innerHTML += `
-            <div style="margin-top:20px;">
-                <span style="color:white;">YOU ›</span>
-                ${message}
+        // Empty message
+        if (!message) {
+            return;
+        }
+
+
+        // Display user message
+
+        chatOutput.innerHTML += `
+
+            <div class="user-message">
+
+                <span style="color:white;">
+                    YOU >
+                </span>
+
+                ${escapeHTML(message)}
+
             </div>
+
         `;
 
-        prompt.value = "";
 
-        chatBox.innerHTML += `
-            <div id="thinking" style="
-                color:#00ff88;
-                margin-top:10px;
-            ">
-                BLORP › THINKING...
-            </div>
-        `;
+        // Clear input
 
-        chatBox.scrollTop = chatBox.scrollHeight;
+        input.value = "";
+
+
+        // Disable button
+
+        sendBtn.disabled = true;
+
+
+        // Thinking message
+
+        const thinking = document.createElement("div");
+
+        thinking.id = "thinking";
+
+        thinking.style.color = "#00ff88";
+
+        thinking.style.marginTop = "10px";
+
+        thinking.innerHTML =
+            "BLORP > THINKING...";
+
+
+        chatOutput.appendChild(thinking);
+
+
+        scrollChat();
 
 
         try {
 
+            // -------------------------------------------------
+            // CONNECT TO NODE BACKEND
+            // -------------------------------------------------
+
             const response = await fetch(
-                "http://localhost:3000/api/chat",
+                "http://localhost:3000/api/generate",
                 {
+
                     method: "POST",
 
                     headers: {
@@ -155,151 +308,193 @@ enterBtn.addEventListener("click", () => {
                     },
 
                     body: JSON.stringify({
-                        message: message
+                        prompt: message
                     })
+
                 }
             );
+
+
+            // Backend HTTP error
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Backend returned HTTP " +
+                    response.status
+                );
+
+            }
 
 
             const data = await response.json();
 
 
-            document.getElementById("thinking").remove();
+            // Remove thinking
+
+            thinking.remove();
 
 
-            chatBox.innerHTML += `
-                <div style="
-                    margin-top:20px;
-                    color:#00ff88;
-                ">
-                    BLORP ›
+            // -------------------------------------------------
+            // FIND AI RESPONSE
+            // -------------------------------------------------
+
+            const reply =
+                data.response ||
+                data.message ||
+                data.text ||
+                data.output ||
+                "BLORP received no response.";
+
+
+            // Display AI response
+
+            chatOutput.innerHTML += `
+
+                <div
+                    class="ai-message"
+                    style="margin-top:15px;"
+                >
+
+                    <span style="color:#00ff88;">
+                        BLORP >
+                    </span>
+
+                    ${escapeHTML(reply)}
+
                 </div>
 
-                <div style="
-                    margin-top:6px;
-                    color:#ddd;
-                    white-space:pre-wrap;
-                ">
-                    ${data.response}
-                </div>
             `;
 
 
         } catch (error) {
 
-            document.getElementById("thinking").remove();
+            console.error(
+                "BLORP CONNECTION ERROR:",
+                error
+            );
 
-            chatBox.innerHTML += `
-                <div style="
-                    margin-top:20px;
-                    color:#ff4444;
-                ">
-                    BLORP › CONNECTION ERROR
+
+            // Remove thinking
+
+            thinking.remove();
+
+
+            // Display error
+
+            chatOutput.innerHTML += `
+
+                <div
+                    style="
+                        margin-top:15px;
+                        color:#ff5555;
+                    "
+                >
+
+                    BLORP >
+
+                    CONNECTION ERROR.
+
+                    <br>
+
+                    Make sure the backend is running at:
+
+                    <br>
+
+                    localhost:3000
+
                 </div>
 
-                <div style="color:#777;">
-                    Backend is not responding.
-                </div>
             `;
 
-            console.error(error);
         }
 
 
-        chatBox.scrollTop = chatBox.scrollHeight;
+        // Re-enable button
+
+        sendBtn.disabled = false;
+
+        input.focus();
+
+        scrollChat();
+
     }
 
 
-    sendBtn.addEventListener("click", sendMessage);
+    // -------------------------------------------------
+    // BUTTON
+    // -------------------------------------------------
+
+    sendBtn.addEventListener(
+        "click",
+        sendMessage
+    );
 
 
-    prompt.addEventListener("keydown", (event) => {
+    // -------------------------------------------------
+    // ENTER KEY
+    // -------------------------------------------------
 
-        if (event.key === "Enter") {
-            sendMessage();
+    input.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (event.key === "Enter") {
+
+                event.preventDefault();
+
+                sendMessage();
+
+            }
+
         }
+    );
 
-    });
-// ===============================
-// BLORP AI CHAT CONNECTION
-// ===============================
 
-const core = document.querySelector(".core");
+    // Focus input
 
-core.insertAdjacentHTML("beforeend", `
-    <div class="chat-box">
-        <div class="chat-output" id="chatOutput">
-            <div>BLORP AI CORE READY.</div>
-            <div>Ask me something...</div>
-        </div>
+    input.focus();
 
-        <div class="chat-input">
-            <input
-                id="aiInput"
-                type="text"
-                placeholder="Talk to BLORP..."
-            />
-            <button id="sendBtn">SEND</button>
-        </div>
-    </div>
-`);
-
-const aiInput = document.getElementById("aiInput");
-const sendBtn = document.getElementById("sendBtn");
-const chatOutput = document.getElementById("chatOutput");
-
-async function askBlorp() {
-
-    const prompt = aiInput.value.trim();
-
-    if (!prompt) return;
-
-    chatOutput.innerHTML += `
-        <div><b>YOU:</b> ${prompt}</div>
-        <div id="thinking">BLORP: THINKING...</div>
-    `;
-
-    aiInput.value = "";
-
-    try {
-
-        const response = await fetch("http://localhost:3000/api/generate", {
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-                prompt: prompt
-            })
-        });
-
-        const data = await response.json();
-
-        document.getElementById("thinking").remove();
-
-        chatOutput.innerHTML += `
-            <div><b>BLORP:</b> ${data.response || data.error}</div>
-        `;
-
-    } catch (error) {
-
-        document.getElementById("thinking").remove();
-
-        chatOutput.innerHTML += `
-            <div><b>ERROR:</b> Cannot connect to BLORP CORE.</div>
-        `;
-
-        console.error(error);
-    }
 }
 
-sendBtn.addEventListener("click", askBlorp);
 
-aiInput.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-        askBlorp();
+// =====================================================
+// SCROLL CHAT
+// =====================================================
+
+function scrollChat() {
+
+    const chatOutput =
+        document.getElementById("chatOutput");
+
+
+    if (chatOutput) {
+
+        chatOutput.scrollTop =
+            chatOutput.scrollHeight;
+
     }
-});
-});
+
+}
+
+
+// =====================================================
+// SECURITY
+// Prevent HTML injection in AI/user messages
+// =====================================================
+
+function escapeHTML(text) {
+
+    return String(text)
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/'/g, "&#039;");
+
+}
