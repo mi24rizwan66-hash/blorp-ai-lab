@@ -1,0 +1,66 @@
+[
+  {
+    "amount": 100,
+    "source": "WhatsApp Image 2026-09-13 at 10.56.38 AM(1).jpeg",
+    "path": "upi-100.png",
+    "payload": "upi://pay?pa=rizwan-cord-pinx@fam&pn=Rizwan k nadaf&am=100",
+    "source_sha256": "90dee951cb199090b61d00c83a2fd2a09748f466f833591d5331a06a83496908",
+    "crop_sha256": "b94b9d9356beecad1b6b16b05bd6a388c0ca5fac807050f498ed256a25a2636a",
+    "crop": [
+      130,
+      405,
+      461,
+      798
+    ],
+    "decoded": true,
+    "pixels_unchanged": true
+  },
+  {
+    "amount": 299,
+    "source": "299(1).jpeg",
+    "path": "upi-299.png",
+    "payload": "upi://pay?pa=rizwan-cord-pinx@fam&pn=Rizwan k nadaf&am=299",
+    "source_sha256": "4b35508f319e5b8f5b8b97bae1849ff7735f28dbed6ce25c68face80f8bad42d",
+    "crop_sha256": "d22bb784f0650c21f5fe50f130cf5d2c26b3e1a15dfa148ddcd3f44e5355c62e",
+    "crop": [
+      130,
+      405,
+      461,
+      798
+    ],
+    "decoded": true,
+    "pixels_unchanged": true
+  },
+  {
+    "amount": 599,
+    "source": "WhatsApp Image 2026-09-13 at 10.54.38 AM(2).jpeg",
+    "path": "upi-599.png",
+    "payload": "upi://pay?pa=rizwan-cord-pinx@fam&pn=Rizwan k nadaf&am=599",
+    "source_sha256": "5b31e7581f9226a7d0444f2ef78e88395abc6aeafb9f66c7b0c4b731662df9d9",
+    "crop_sha256": "4a7001b852a61d5efae0d675b7d929f2629478f1f1c6828d25c4b97538a8e673",
+    "crop": [
+      130,
+      405,
+      461,
+      798
+    ],
+    "decoded": true,
+    "pixels_unchanged": true
+  },
+  {
+    "amount": 9996,
+    "source": "996(1).jpeg",
+    "path": "upi-9996.png",
+    "payload": "upi://pay?pa=rizwan-cord-pinx@fam&pn=Rizwan k nadaf&am=9996",
+    "source_sha256": "545426e3ea44ba2bba0a51ebbad1d4eec656c19099edaf5b58ff15297fd46fa0",
+    "crop_sha256": "a01905c6e4bf8f816540e97cef3afa4fd14c21f137498c6b4f5dae7b6d3e2ccd",
+    "crop": [
+      130,
+      405,
+      461,
+      798
+    ],
+    "decoded": true,
+    "pixels_unchanged": true
+  }
+]

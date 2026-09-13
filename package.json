@@ -1,0 +1,53 @@
+{
+  "name": "blorp-ai-lab",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n api,web \"node --import tsx --watch server/index.ts\" \"vite --host 127.0.0.1\"",
+    "build": "tsc --noEmit && vite build && tsc -p tsconfig.server.json",
+    "start": "node dist-server/index.js",
+    "test": "node --import tsx --test test/*.test.ts",
+    "admin:hash": "node --import tsx scripts/hash-password.ts",
+    "db:backup": "node --import tsx scripts/backup.ts"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "helmet": "^8.3.0",
+    "jose": "^6.2.12",
+    "lucide-react": "^1.45.0",
+    "multer": "^2.3.0",
+    "nodemailer": "^10.0.9",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.18.3",
+    "remark-gfm": "^4.0.1",
+    "three": "^0.186.0",
+    "zod": "^4.6.4"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
+    "@types/express": "^5.0.6",
+    "@types/jsdom": "^30.0.0",
+    "@types/multer": "^2.2.0",
+    "@types/node": "^22.20.2",
+    "@types/nodemailer": "^8.0.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/supertest": "^7.2.1",
+    "@types/three": "^0.186.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "concurrently": "^10.0.5",
+    "jsdom": "^30.0.1",
+    "supertest": "^7.2.2",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.0"
+  }
+}
