@@ -2,7 +2,7 @@ name: Verify platform
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, blorp-work-build]
 permissions:
   contents: read
 jobs:

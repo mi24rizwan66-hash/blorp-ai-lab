@@ -2,8 +2,6 @@ import {test,after} from 'node:test';
 import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
 import React,{act} from 'react';
-import {createRoot} from 'react-dom/client';
-import {MemoryRouter} from 'react-router-dom';
 const dom=new JSDOM('<!doctype html><html><body><div id="root"></div></body></html>',{url:'http://localhost:5173'});
 Object.assign(globalThis,{window:dom.window,document:dom.window.document,HTMLElement:dom.window.HTMLElement,HTMLDialogElement:dom.window.HTMLDialogElement,IS_REACT_ACT_ENVIRONMENT:true});
 Object.defineProperty(globalThis,'navigator',{value:dom.window.navigator,configurable:true});
@@ -14,6 +12,9 @@ dom.window.HTMLDialogElement.prototype.showModal=function(){this.open=true;};dom
 const originalError=console.error;const errors:string[]=[];console.error=(...args:any[])=>{const message=args.join(' ');if(message.includes('Error creating WebGL context'))return;errors.push(message);};
 const guestConfig={demo:true,email:false,google:false,admin:false,payments:false,lifetimeOpen:true,models:[],now:Date.now()};let user:any=null,payments:any[]=[],enabled=false;
 const originalFetch=globalThis.fetch;globalThis.fetch=async(input:any)=>{const path=String(input);let data:any={};if(path.endsWith('/config'))data={...guestConfig,payments:enabled};else if(path.endsWith('/session')&&!path.includes('admin'))data={user};else if(path.endsWith('/admin/session'))data={admin:null,configured:false};else if(path.endsWith('/status'))data={services:[{name:'Database',status:'Operational',note:'Checked'},{name:'BLORP Chat',status:'Offline',note:'Not configured'}],history:[],checkedAt:Date.now(),telemetry:{memoryMb:40,processUptimeSeconds:120}};else if(path.endsWith('/payments'))data={payments};else if(path.includes('/projects'))data={projects:[]};else if(path.includes('/prompts'))data={prompts:[]};else if(path.includes('/files'))data={files:[]};else if(path.includes('/chats'))data={chats:[]};else if(path.includes('/announcements'))data={announcements:[]};return new Response(JSON.stringify(data),{headers:{'Content-Type':'application/json'}});};
+// React DOM detects browser input support at import time; install jsdom first.
+const {createRoot}=await import('react-dom/client');
+const {MemoryRouter}=await import('react-router-dom');
 const {default:App}=await import('../src/App.js');
 const rootElement=document.getElementById('root')!;let root:ReturnType<typeof createRoot>|null=null;
 async function mount(path:string){if(root)await act(async()=>root!.unmount());root=createRoot(rootElement);await act(async()=>{root!.render(React.createElement(MemoryRouter,{initialEntries:[path]},React.createElement(App)));await new Promise(r=>setTimeout(r,25));});}
